@@ -10,26 +10,25 @@ public:
 	Tarefa(int N, int M);
 	~Tarefa();
 
-	void itemUmATeste();
-	void itemUmA();
-	void itemUmB();
-	void itemUmC();
-
-	void itemDoisA();
-	void itemDoisB();
-	void itemDoisC();
-
+	void arquivo();
+	void MMQ(std::vector<double>* p, char ch);
+	std::vector<double>* getP();
 	double getLambda();
 
 private:
-	int N = 0;
-	int M = 0;
+	const int N = 0;
+	const int M = 0;
 	double lambda = 0;
 	double deltaT = 0; 
 	double deltaX = 0;
-	double p = 0.25;
-	double f(int k, int i, char ch);
-	double uReal(int k, int i, char ch);
+	std::vector<double>* p;
+	std::vector<double>* uT;
+
+	double f(int k, int i, double p);
+	double innerProduct(std::vector<double>* u, std::vector<double>* v);
 	void printLine(std::vector<double> line, std::ostream& output);
-	std::vector<double>* solveLDLt(std::vector<double>* diag, std::vector<double>* sub, std::vector<double>* b);
+
+	std::vector<double>* crankPontual(double p);
+	std::vector<double>* solveLDLtCN(std::vector<double>* diag, std::vector<double>* sub, std::vector<double>* b);
+	std::vector<double>* solveLDLt(std::vector<std::vector<double>*>* N, std::vector<double>* B);
 };
