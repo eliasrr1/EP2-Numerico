@@ -4,7 +4,9 @@
 *.vcxproj
 *.vcxproj.filters
 *.txt
+*.exe
 Resultados/
+.vscode/
 
 ### Windows ###
 # Windows thumbnail cache files
