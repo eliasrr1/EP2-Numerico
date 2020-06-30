@@ -72,6 +72,10 @@ void Tarefa::MMQ(std::vector<double>* p, char ch)
 	std::vector<double>* b = new std::vector<double>(N);
 	std::vector<double>* coef = new std::vector<double>(N);
 
+    std::ofstream file;
+    file.open("Output.txt", std::ios::trunc);
+    file << "uT Medido      uT Reconstruido\n" << std::endl;
+
 	std::mt19937 gerador(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 	std::uniform_real_distribution<double> dist(-1.0, 1.0);
 
@@ -126,12 +130,13 @@ void Tarefa::MMQ(std::vector<double>* p, char ch)
 		{
 			uTCalc += coef->at(k) * base->at(k)->at(i);
 		}
+        file << std::scientific << uT->at(i) << "   " << uTCalc << std::endl;
 		erroQuadratico += (uT->at(i) - uTCalc) * (uT->at(i) - uTCalc);
 	}
 	erroQuadratico *= deltaX;
-	std::cout << "Erro Quadratico:" << std::endl
-		<< std::scientific << erroQuadratico << std::endl;
+	std::cout << "Erro Quadratico:" << std::endl << std::scientific << erroQuadratico << std::endl;
 
+    file.close();
 	for (int i = 0; i < N; i++)
 	{
 		delete base->at(i);
