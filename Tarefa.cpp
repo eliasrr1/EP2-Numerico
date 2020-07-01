@@ -198,7 +198,7 @@ double Tarefa::f(int k, int i, double p)
 	double t = deltaT * k;
 	double x = deltaX * i;
 	if (x >= (p - deltaX / 2) && x <= (p + deltaX / 2))
-		return (10 * (1 + cos(5 * t)));
+		return (10 * (1 + cos(5 * t))/deltaX);
 	else
 		return 0;
 }
@@ -208,7 +208,7 @@ void Tarefa::printLine(std::vector<double> line, std::ostream& output)
 	output << std::endl << "Coeficientes:" << std::endl;
 	for (unsigned int i = 0; i < line.size(); i++)
 	{
-		output << "a_" << i << " = " << std::scientific << line.at(i) << std::endl;
+		output << "a_" << i + 1 << " = " << std::scientific << line.at(i) << std::endl;
 	}
 	output << std::endl;
 }
