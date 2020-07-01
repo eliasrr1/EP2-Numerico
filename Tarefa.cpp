@@ -73,7 +73,9 @@ void Tarefa::MMQ(std::vector<double>* p, char ch)
 	std::vector<double>* coef = new std::vector<double>(N);
 
     std::ofstream file;
-    file.open("Output.txt", std::ios::trunc);
+	std::string nome = "Output";
+	nome += (char)toupper(ch) + std::to_string(this->N) + ".txt";
+    file.open(nome, std::ios::trunc);
     file << "uT Medido      uT Reconstruido\n" << std::endl;
 
 	std::mt19937 gerador((unsigned int)std::chrono::high_resolution_clock::now().time_since_epoch().count());

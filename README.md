@@ -27,4 +27,8 @@
 
 O programa recebe a seleção do teste a ser realizado e, nos casos dos testes C e D, pede para que o usuário forneça o valor de N, a discretização do espaço.
 
-Em todos os testes, o programa imprime tanto os coeficiente obtidos, quanto o erro quadrático calculado, no console. Além disso, é gerado um arquivo, *Output.txt*, que mostra o vetor uT de entrada, ou seja, medido, ao lado do vetor uT recuperado a partir dos coeficientes. Note que, no teste D, o vetor uT medido, já possui ruído.
+Em todos os testes, o programa imprime tanto os coeficiente obtidos, quanto o erro quadrático calculado, no console. Além disso, é gerado um arquivo de saída que mostra o vetor uT de entrada, medido, ao lado do vetor uT recuperado a partir dos coeficientes. Note que, no teste D, o vetor uT medido, já possui ruído.
+
+O nome dos arquivos de saída, no formato *.txt* seguem a seguinte convenção:
+
+    Output + <letra do teste> + <valor de N>
