@@ -65,7 +65,7 @@ void Tarefa::arquivo()
 
 void Tarefa::MMQ(std::vector<double>* p, char ch)
 {
-	*(this->p) = *p;
+	this->p = p;
 	int N = (int)p->size();
 	std::vector<std::vector<double>*>* base = new std::vector<std::vector<double>*>(N);
 	std::vector<std::vector<double>*>* A = new std::vector<std::vector<double>*>(N);
@@ -123,7 +123,7 @@ void Tarefa::MMQ(std::vector<double>* p, char ch)
 	}
 
 	coef = solveLDLt(A, b);
-	printLine(*coef, std::cout);
+	printLine(coef, std::cout);
 
 	for (unsigned int i = 0; i < uT->size(); i++)
 	{
@@ -142,8 +142,11 @@ void Tarefa::MMQ(std::vector<double>* p, char ch)
 	for (int i = 0; i < N; i++)
 	{
 		delete base->at(i);
+		delete A->at(i);
 	}
 	delete base;
+	delete A;
+	delete b;
 	delete coef;
 	return;
 }
@@ -205,12 +208,12 @@ double Tarefa::f(int k, int i, double p)
 		return 0;
 }
 
-void Tarefa::printLine(std::vector<double> line, std::ostream& output)
+void Tarefa::printLine(std::vector<double>* line, std::ostream& output)
 {
 	output << std::endl << "Coeficientes:" << std::endl;
-	for (unsigned int i = 0; i < line.size(); i++)
+	for (unsigned int i = 0; i < line->size(); i++)
 	{
-		output << "a_" << i + 1 << " = " << std::scientific << line.at(i) << std::endl;
+		output << "a_" << i + 1 << " = " << std::scientific << line->at(i) << std::endl;
 	}
 	output << std::endl;
 }
@@ -338,7 +341,5 @@ std::vector<double>* Tarefa::solveLDLt(std::vector<std::vector<double>*>* A, std
 	}
 	delete l;
 	delete d;
-	delete A;
-	delete b;
 	return x;
 }

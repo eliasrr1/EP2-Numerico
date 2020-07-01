@@ -26,7 +26,7 @@ private:
 
 	double f(int k, int i, double p);
 	double innerProduct(std::vector<double>* u, std::vector<double>* v);
-	void printLine(std::vector<double> line, std::ostream& output);
+	void printLine(std::vector<double>* line, std::ostream& output);
 
 	std::vector<double>* crankPontual(double p);
 	std::vector<double>* solveLDLtCN(std::vector<double>* diag, std::vector<double>* sub, std::vector<double>* b);
