@@ -76,10 +76,10 @@ void Tarefa::MMQ(std::vector<double>* p, char ch)
     file.open("Output.txt", std::ios::trunc);
     file << "uT Medido      uT Reconstruido\n" << std::endl;
 
-	std::mt19937 gerador(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+	std::mt19937 gerador((unsigned int)std::chrono::high_resolution_clock::now().time_since_epoch().count());
 	std::uniform_real_distribution<double> dist(-1.0, 1.0);
 
-	double erroQuadratico = 0, uTCalc = 0;
+	double erro = 0, uTCalc = 0;
 
 	for (int i = 0; i < N; i++)
 	{
@@ -123,7 +123,7 @@ void Tarefa::MMQ(std::vector<double>* p, char ch)
 	coef = solveLDLt(A, b);
 	printLine(*coef, std::cout);
 
-	for (unsigned int i = 1; i < uT->size() - 1; i++)
+	for (unsigned int i = 0; i < uT->size(); i++)
 	{
 		uTCalc = 0;
 		for (int k = 0; k < N; k++)
@@ -131,10 +131,10 @@ void Tarefa::MMQ(std::vector<double>* p, char ch)
 			uTCalc += coef->at(k) * base->at(k)->at(i);
 		}
         file << std::scientific << uT->at(i) << "   " << uTCalc << std::endl;
-		erroQuadratico += (uT->at(i) - uTCalc) * (uT->at(i) - uTCalc);
+		erro += (uT->at(i) - uTCalc) * (uT->at(i) - uTCalc);
 	}
-	erroQuadratico *= deltaX;
-	std::cout << "Erro Quadratico:" << std::endl << std::scientific << erroQuadratico << std::endl;
+	erro *= deltaX;
+	std::cout << "Erro:" << std::endl << std::scientific << sqrt(erro) << std::endl;
 
     file.close();
 	for (int i = 0; i < N; i++)
