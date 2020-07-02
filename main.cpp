@@ -61,9 +61,11 @@ void menu()
 	}
 	else
 	{
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
 		throw new std::invalid_argument("Digite apenas uma letra de A a D");
 	}
-	menu();
+	return;
 }
 
 int main()
@@ -72,20 +74,17 @@ int main()
 	std::cout << "====================" << std::endl;
 	std::cout << "Exercicio Programa 2" << std::endl;
 	std::cout << "====================" << std::endl;
-	bool exception = 0;
-	do
+	while (true)
 	{
 		try
 		{
-			exception = 0;
 			menu();
 		}
 		catch (std::exception* e)
 		{
 			std::cout << std::endl << "** Erro na execucao do programa: " << e->what() << "! **" << std::endl;
 			delete e;
-			exception = 1;
 		}
-	} while (exception == 1);
+	}
 	return 0;
 }
