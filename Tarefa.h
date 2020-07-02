@@ -11,18 +11,15 @@ public:
 	~Tarefa();
 
 	void arquivo();
-	void MMQ(std::vector<double>* p, char ch);
-	std::vector<double>* getP();
+	void MMQ(char ch);
+	std::vector<double> getP();
+	void setP(std::vector<double>* p);
 	double getLambda();
 
 private:
-	const int N = 0;
-	const int M = 0;
-	double lambda = 0;
-	double deltaT = 0; 
-	double deltaX = 0;
-	std::vector<double>* p;
-	std::vector<double>* uT;
+	const int N, M;
+	double lambda, deltaT, deltaX;
+	std::vector<double> p, uT;
 
 	double f(int k, int i, double p);
 	double innerProduct(std::vector<double>* u, std::vector<double>* v);

@@ -12,20 +12,15 @@ Tarefa::Tarefa(int N, int M) : N(N), M(M)
 	deltaT = 1 / (double)M;
 	deltaX = 1 / (double)N;
 	lambda = ((double)N * (double)N) / M;
-	p = new std::vector<double>;
-	uT = new std::vector<double>;
 }
 
 Tarefa::~Tarefa()
 {
-	delete p;
-	delete uT;
 }
 
 void Tarefa::arquivo()
 {
 	std::ifstream entrada;
-	std::istringstream linha;
 	std::string s;
 	entrada.open("teste.txt");
 
@@ -45,9 +40,9 @@ void Tarefa::arquivo()
 	std::getline(entrada, s);
 	std::istringstream iss(s);
 	while (std::getline(iss >> std::ws, s, ' '))
-		p->push_back(std::stod(s));
+		p.push_back(std::stod(s));
 
-	uT->resize(N + 1, 0);
+	uT.resize(N + 1, 0);
 	for (int i = 0; i < 2049; i++)
 	{
 		if (!entrada.good())
@@ -56,57 +51,56 @@ void Tarefa::arquivo()
 			throw new std::invalid_argument("Erro de formatacao");
 		}
 		if (i % (2048 / N) == 0)
-			entrada >> uT->at(i * N / 2048);
+			entrada >> uT.at((i * N) / 2048);
 		else
 			entrada >> s;
 	}
 	return;
 }
 
-void Tarefa::MMQ(std::vector<double>* p, char ch)
+void Tarefa::MMQ(char ch)
 {
-	this->p = p;
-	int N = (int)p->size();
+	int N = (int)p.size();
 	std::vector<std::vector<double>> base(N);
 	std::vector<std::vector<double>> A(N, std::vector<double>(N));
 	std::vector<double> b(N);
 	std::vector<double> coef(N);
 
-    std::ofstream file;
+	std::ofstream file;
 	std::string nome = "Output";
 	nome += (char)toupper(ch) + std::to_string(this->N) + ".txt";
-    file.open(nome, std::ios::trunc);
-    file << "uT Medido      uT Reconstruido\n" << std::endl;
+	file.open(nome, std::ios::trunc);
+	file << "uT Medido      uT Reconstruido\n" << std::endl;
 
 	std::mt19937 gerador((unsigned int)std::chrono::high_resolution_clock::now().time_since_epoch().count());
 	std::uniform_real_distribution<double> dist(-1.0, 1.0);
 
-	double erro = 0, uTCalc = 0;
+	double erro = 0;
 
 	for (int i = 0; i < N; i++)
 	{
-		base.at(i) = crankPontual(p->at(i));
+		base.at(i) = crankPontual(p.at(i));
 	}
 
 	if (ch == 'a')
 	{
 		for (unsigned int i = 0; i < base.at(0).size(); i++)
 		{
-			uT->push_back(7 * base.at(0).at(i));
+			uT.push_back(7 * base.at(0).at(i));
 		}
 	}
 	else if (ch == 'b')
 	{
 		for (unsigned int i = 0; i < base.at(0).size(); i++)
 		{
-			uT->push_back(2.3 * base.at(0).at(i) + 3.7 * base.at(1).at(i) + 0.3 * base.at(2).at(i) + 4.2 * base.at(3).at(i));
+			uT.push_back(2.3 * base.at(0).at(i) + 3.7 * base.at(1).at(i) + 0.3 * base.at(2).at(i) + 4.2 * base.at(3).at(i));
 		}
 	}
 	else if (ch == 'd')
 	{
 		for (unsigned int i = 0; i < base.at(0).size(); i++)
 		{
-			uT->at(i) *= (1 + dist(gerador) * 0.01);
+			uT.at(i) *= (1 + dist(gerador) * 0.01);
 		}
 	}
 
@@ -118,26 +112,26 @@ void Tarefa::MMQ(std::vector<double>* p, char ch)
 			A.at(i).at(j) = produto;
 			A.at(j).at(i) = produto;
 		}
-		b.at(i) = innerProduct(&base.at(i), uT);
+		b.at(i) = innerProduct(&base.at(i), &uT);
 	}
 
 	coef = solveLDLt(&A, &b);
 	printLine(&coef, std::cout);
 
-	for (unsigned int i = 0; i < uT->size(); i++)
+	for (unsigned int i = 0; i < uT.size(); i++)
 	{
-		uTCalc = 0;
+		double uTCalc = 0;
 		for (int k = 0; k < N; k++)
 		{
 			uTCalc += coef.at(k) * base.at(k).at(i);
 		}
-        file << std::scientific << uT->at(i) << "   " << uTCalc << std::endl;
-		erro += (uT->at(i) - uTCalc) * (uT->at(i) - uTCalc);
+		file << std::scientific << uT.at(i) << "   " << uTCalc << std::endl;
+		erro += (uT.at(i) - uTCalc) * (uT.at(i) - uTCalc);
 	}
 	erro *= deltaX;
 	std::cout << "Erro:" << std::endl << std::scientific << sqrt(erro) << std::endl;
 
-    file.close();
+	file.close();
 	return;
 }
 
@@ -151,7 +145,6 @@ std::vector<double> Tarefa::crankPontual(double p)
 	std::vector<double> diag(N - 1, 1 + lambda);
 	std::vector<double> sub(N - 2, -lambda / 2);
 	std::vector<double> b(N - 1, 0);
-	std::vector<double> temp(N - 1, 0);
 
 	// Calculo por metodo de Crank-Nicolson
 	for (int k = 0; k < M; k++)
@@ -161,7 +154,7 @@ std::vector<double> Tarefa::crankPontual(double p)
 		{
 			b.at(i) = (1 - lambda) * uAnterior.at(i + 1) + (lambda / 2) * uAnterior.at(i) + (lambda / 2) * uAnterior.at(i + 2) + (deltaT / 2) * (f(k, i + 1, p) + f(k + 1, i + 1, p));
 		}
-		temp = solveLDLtCN(&diag, &sub, &b);
+		std::vector<double> temp = solveLDLtCN(&diag, &sub, &b);
 		for (int i = 1; i < N; i++)
 		{
 			u.at(i) = temp.at(i - 1);
@@ -173,9 +166,14 @@ std::vector<double> Tarefa::crankPontual(double p)
 	return u;
 }
 
-std::vector<double>* Tarefa::getP()
+std::vector<double> Tarefa::getP()
 {
 	return this->p;
+}
+
+void Tarefa::setP(std::vector<double>* p)
+{
+	this->p = *p;
 }
 
 double Tarefa::getLambda()
@@ -188,7 +186,7 @@ double Tarefa::f(int k, int i, double p)
 	double t = deltaT * k;
 	double x = deltaX * i;
 	if (x >= (p - deltaX / 2) && x <= (p + deltaX / 2))
-		return (10 * (1 + cos(5 * t))/deltaX);
+		return (10 * (1 + cos(5 * t)) / deltaX);
 	else
 		return 0;
 }
@@ -258,7 +256,7 @@ std::vector<double> Tarefa::solveLDLtCN(std::vector<double>* diag, std::vector<d
 
 std::vector<double> Tarefa::solveLDLt(std::vector<std::vector<double>>* A, std::vector<double>* b)
 {
-	int N = (int)p->size();
+	int N = (int)p.size();
 	//Determinacao de D e L
 	std::vector<double> d(N, 0);
 	std::vector<std::vector<double>> l(N, std::vector<double>(N));
