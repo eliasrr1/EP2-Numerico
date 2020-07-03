@@ -8,10 +8,10 @@ p = 0.35;
 figure;
 hold
 title("Teste A");
-plot(x, U(:,1));
+scatter(x, U(:,1));
 plot(x, U(:,2));
-plot(p, U(ceil(N*p),1),'bo');
-legend('uT Medido','uT Reconstruído')
+plot(ceil(N*p), U(ceil(N*p),1),'bo');
+legend('uT Medido','uT Reconstruído', 'Fonte')
 saveas(gcf,'FigA128.png')
 
 %% Teste B
@@ -26,8 +26,8 @@ hold
 title("Teste B");
 plot(x, U(:,1));
 plot(x, U(:,2));
-plot(p, U(ceil(N*p),1),'bo');
-legend('uT Medido','uT Reconstruído')
+plot(ceil(N*p), U(ceil(N*p),1),'bo');
+legend('uT Medido','uT Reconstruído', 'Fontes')
 saveas(gcf,'FigB128.png')
 
 %% Para os testes C e D
@@ -45,8 +45,8 @@ hold
 title("Teste C com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
-plot(p, U(ceil(N*p),1),'bo');
-legend('uT Medido','uT Reconstruído')
+plot(ceil(N*p), U(ceil(N*p),1),'bo');
+legend('uT Medido','uT Reconstruído', 'Fontes')
 saveas(gcf,"FigC" + N + ".png")
 
 %% Teste C
@@ -60,8 +60,8 @@ hold
 title("Teste C com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
-plot(p, U(ceil(N*p),1),'bo');
-legend('uT Medido','uT Reconstruído')
+plot(ceil(N*p), U(ceil(N*p),1),'bo');
+legend('uT Medido','uT Reconstruído', 'Fontes')
 saveas(gcf,"FigC" + N + ".png")
 
 %% Teste C
@@ -75,8 +75,8 @@ hold
 title("Teste C com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
-plot(p, U(ceil(N*p),1),'bo');
-legend('uT Medido','uT Reconstruído')
+plot(ceil(N*p), U(ceil(N*p),1),'bo');
+legend('uT Medido','uT Reconstruído', 'Fontes')
 saveas(gcf,"FigC" + N + ".png")
 
 %% Teste C
@@ -90,8 +90,8 @@ hold
 title("Teste C com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
-plot(p, U(ceil(N*p),1),'bo');
-legend('uT Medido','uT Reconstruído')
+plot(ceil(N*p), U(ceil(N*p),1),'bo');
+legend('uT Medido','uT Reconstruído', 'Fontes')
 saveas(gcf,"FigC" + N + ".png")
 
 %% Teste C
@@ -105,8 +105,8 @@ hold
 title("Teste C com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
-plot(p, U(ceil(N*p),1),'bo');
-legend('uT Medido','uT Reconstruído')
+plot(ceil(N*p), U(ceil(N*p),1),'bo');
+legend('uT Medido','uT Reconstruído', 'Fontes')
 saveas(gcf,"FigC" + N + ".png")
 
 %% Teste D
@@ -120,8 +120,8 @@ hold
 title("Teste D com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
-plot(p, U(ceil(N*p),1),'bo');
-legend('uT Medido','uT Reconstruído')
+plot(ceil(N*p), U(ceil(N*p),1),'bo');
+legend('uT Medido','uT Reconstruído', 'Fontes')
 saveas(gcf,"FigD" + N + ".pdf")
 
 %% Teste D
@@ -135,8 +135,8 @@ hold
 title("Teste D com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
-plot(p, U(ceil(N*p),1),'bo');
-legend('uT Medido','uT Reconstruído')
+plot(ceil(N*p), U(ceil(N*p),1),'bo');
+legend('uT Medido','uT Reconstruído', 'Fontes')
 saveas(gcf,"FigD" + N + ".pdf")
 
 %% Teste D
@@ -150,8 +150,8 @@ hold
 title("Teste D com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
-plot(p, U(ceil(N*p),1),'bo');
-legend('uT Medido','uT Reconstruído')
+plot(ceil(N*p), U(ceil(N*p),1),'bo');
+legend('uT Medido','uT Reconstruído', 'Fontes')
 saveas(gcf,"FigD" + N + ".pdf")
 
 %% Teste D
@@ -165,8 +165,8 @@ hold
 title("Teste D com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
-plot(p, U(ceil(N*p),1),'bo');
-legend('uT Medido','uT Reconstruído')
+plot(ceil(N*p), U(ceil(N*p),1),'bo');
+legend('uT Medido','uT Reconstruído', 'Fontes')
 saveas(gcf,"FigD" + N + ".pdf")
 
 %% Teste D
@@ -180,6 +180,6 @@ hold
 title("Teste D com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
-plot(p, U(ceil(N*p),1),'bo');
-legend('uT Medido','uT Reconstruído')
+plot(ceil(N*p), U(ceil(N*p),1),'bo');
+legend('uT Medido','uT Reconstruído', 'Fontes')
 saveas(gcf,"FigD" + N + ".pdf")
