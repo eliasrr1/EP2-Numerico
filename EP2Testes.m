@@ -184,4 +184,4 @@ plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
 legend('uT Medido','uT Reconstruido', 'Fontes')
-saveas(gcf,"FigD" + N + ".pdf")
+saveas(gcf,"FigD" + N + ".png")
