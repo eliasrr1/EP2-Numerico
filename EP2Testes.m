@@ -12,7 +12,9 @@ title("Teste A");
 plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
-legend('uT Medido','uT ReconstruÃ­do', 'Fonte')
+legend('uT Medido','uT Reconstruído', 'Fonte')
+xlabel('0 < x < 1') 
+ylabel('Temperatura')
 saveas(gcf,'FigA128.png')
 
 %% Teste B
@@ -29,7 +31,9 @@ title("Teste B");
 plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
-legend('uT Medido','uT ReconstruÃ­do', 'Fontes')
+legend('uT Medido','uT Reconstruído', 'Fontes')
+xlabel('0 < x < 1') 
+ylabel('Temperatura')
 saveas(gcf,'FigB128.png')
 
 %% Para os testes C e D
@@ -48,7 +52,9 @@ title("Teste C com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
-legend('uT Medido','uT ReconstruÃ­do', 'Fontes')
+legend('uT Medido','uT Reconstruído', 'Fontes')
+xlabel('0 < x < 1') 
+ylabel('Temperatura')
 saveas(gcf,"FigC" + N + ".png")
 
 %% Teste C
@@ -63,7 +69,9 @@ title("Teste C com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
-legend('uT Medido','uT ReconstruÃ­do', 'Fontes')
+legend('uT Medido','uT Reconstruído', 'Fontes')
+xlabel('0 < x < 1') 
+ylabel('Temperatura')
 saveas(gcf,"FigC" + N + ".png")
 
 %% Teste C
@@ -78,7 +86,9 @@ title("Teste C com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
-legend('uT Medido','uT ReconstruÃ­do', 'Fontes')
+legend('uT Medido','uT Reconstruído', 'Fontes')
+xlabel('0 < x < 1') 
+ylabel('Temperatura')
 saveas(gcf,"FigC" + N + ".png")
 
 %% Teste C
@@ -93,7 +103,9 @@ title("Teste C com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
-legend('uT Medido','uT ReconstruÃ­do', 'Fontes')
+legend('uT Medido','uT Reconstruído', 'Fontes')
+xlabel('0 < x < 1') 
+ylabel('Temperatura')
 saveas(gcf,"FigC" + N + ".png")
 
 %% Teste C
@@ -108,7 +120,9 @@ title("Teste C com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
-legend('uT Medido','uT ReconstruÃ­do', 'Fontes')
+legend('uT Medido','uT Reconstruído', 'Fontes')
+xlabel('0 < x < 1') 
+ylabel('Temperatura')
 saveas(gcf,"FigC" + N + ".png")
 
 %% Teste D
@@ -123,7 +137,9 @@ title("Teste D com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
-legend('uT Medido','uT ReconstruÃ­do', 'Fontes')
+legend('uT Medido','uT Reconstruído', 'Fontes')
+xlabel('0 < x < 1') 
+ylabel('Temperatura')
 saveas(gcf,"FigD" + N + ".png")
 
 %% Teste D
@@ -138,7 +154,9 @@ title("Teste D com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
-legend('uT Medido','uT ReconstruÃ­do', 'Fontes')
+legend('uT Medido','uT Reconstruído', 'Fontes')
+xlabel('0 < x < 1') 
+ylabel('Temperatura')
 saveas(gcf,"FigD" + N + ".png")
 
 %% Teste D
@@ -153,7 +171,9 @@ title("Teste D com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
-legend('uT Medido','uT ReconstruÃ­do', 'Fontes')
+legend('uT Medido','uT Reconstruído', 'Fontes')
+xlabel('0 < x < 1') 
+ylabel('Temperatura')
 saveas(gcf,"FigD" + N + ".png")
 
 %% Teste D
@@ -168,7 +188,9 @@ title("Teste D com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
-legend('uT Medido','uT Reconstruido', 'Fontes')
+legend('uT Medido','uT Reconstruído', 'Fontes')
+xlabel('0 < x < 1') 
+ylabel('Temperatura')
 saveas(gcf,"FigD" + N + ".png")
 
 %% Teste D
@@ -183,5 +205,7 @@ title("Teste D com N = " + N);
 plot(x, U(:,1));
 plot(x, U(:,2));
 plot(x(i), U(i,1),'bo');
-legend('uT Medido','uT Reconstruido', 'Fontes')
+legend('uT Medido','uT Reconstruído', 'Fontes')
+xlabel('0 < x < 1') 
+ylabel('Temperatura')
 saveas(gcf,"FigD" + N + ".png")
