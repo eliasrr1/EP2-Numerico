@@ -7,7 +7,7 @@ void menu();
 // Menu visual para recebimento de instrucoes
 void menu()
 {
-
+	// Recebe o teste a ser realizado
 	char item;
 	std::cout << std::endl;
 	std::cout << "Escolha o teste: ";
@@ -16,14 +16,14 @@ void menu()
 	if (item == 'a')
 	{
 		Tarefa tarefa(128, 128);
-		std::vector<double> p{ 0.35 };
+		std::vector<double> p{ 0.35 }; // Posicao da fonte do teste a
 		tarefa.setP(&p);
 		tarefa.MMQ('a');
 	}
 	else if (item == 'b')
 	{
 		Tarefa tarefa(128, 128);
-		std::vector<double> p{ 0.15, 0.3, 0.7, 0.8 };
+		std::vector<double> p{ 0.15, 0.3, 0.7, 0.8 }; // Posicao das fontes do teste b
 		tarefa.setP(&p);
 		tarefa.MMQ('b');
 	}
@@ -39,7 +39,7 @@ void menu()
 			throw new std::invalid_argument("Digite um numero");
 		}
 		if ((2048 % N != 0) | (N == 1))
-			throw new std::invalid_argument("Valor de N invalido");
+			throw new std::invalid_argument("Valor de N invalido"); // Verifica se N e' submultiplo de 2048
 		Tarefa tarefa(N, N);
 		tarefa.arquivo();
 		tarefa.MMQ('c');
@@ -56,7 +56,7 @@ void menu()
 			throw new std::invalid_argument("Digite um numero");
 		}
 		if ((2048 % N != 0) | (N == 1))
-			throw new std::invalid_argument("Valor de N invalido");
+			throw new std::invalid_argument("Valor de N invalido"); // Verifica se N e' submultiplo de 2048
 		Tarefa tarefa(N, N);
 		tarefa.arquivo();
 		tarefa.MMQ('d');

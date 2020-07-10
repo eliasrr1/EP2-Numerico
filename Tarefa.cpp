@@ -31,17 +31,20 @@ void Tarefa::arquivo()
 		throw new std::invalid_argument("Arquivo nao encontrado");
 	}
 
+	// Verificar se o arquivo esta vazio
 	if (entrada.eof())
 	{
 		entrada.close();
 		throw new std::invalid_argument("Arquivo vazio");
 	}
 
+	// Preenche vetor com posicoes das fontes
 	std::getline(entrada, s);
 	std::istringstream iss(s);
-	while (std::getline(iss >> std::ws, s, ' '))
+	while (std::getline(iss >> std::ws, s, ' ')) 
 		p.push_back(std::stod(s));
 
+	// Preenche vetor de uT
 	uT.resize(N + 1, 0);
 	for (int i = 0; i < 2049; i++)
 	{
@@ -72,6 +75,7 @@ void Tarefa::MMQ(char ch)
 	file.open(nome, std::ios::trunc);
 	file << "uT Medido      uT Reconstruido\n" << std::endl;
 
+	// Cria gerador de numeros aleatorios, com seed baseada no tempo
 	std::mt19937 gerador((unsigned int)std::chrono::high_resolution_clock::now().time_since_epoch().count());
 	std::uniform_real_distribution<double> dist(-1.0, 1.0);
 
@@ -82,6 +86,7 @@ void Tarefa::MMQ(char ch)
 		base.at(i) = crankPontual(p.at(i));
 	}
 
+	// Modifica uT para casos especiais
 	if (ch == 'a')
 	{
 		for (unsigned int i = 0; i < base.at(0).size(); i++)
@@ -104,6 +109,7 @@ void Tarefa::MMQ(char ch)
 		}
 	}
 
+	// Monta o sistema normal
 	for (int i = 0; i < N; i++)
 	{
 		for (int j = i; j < N; j++)
@@ -115,9 +121,11 @@ void Tarefa::MMQ(char ch)
 		b.at(i) = innerProduct(&base.at(i), &uT);
 	}
 
+	// Resolve o sistema
 	coef = solveLDLt(&A, &b);
 	printLine(&coef, std::cout);
 
+	// Calcula EQM (RMS)
 	for (unsigned int i = 0; i < uT.size(); i++)
 	{
 		double uTCalc = 0;
@@ -183,6 +191,7 @@ double Tarefa::getLambda()
 
 double Tarefa::f(int k, int i, double p)
 {
+	// Calcula valor de f
 	double t = deltaT * k;
 	double x = deltaX * i;
 	if (x >= (p - deltaX / 2) && x <= (p + deltaX / 2))
@@ -203,6 +212,7 @@ void Tarefa::printLine(std::vector<double>* line, std::ostream& output)
 
 double Tarefa::innerProduct(std::vector<double>* u, std::vector<double>* v)
 {
+	// Calcula produto interno entre dois vetores
 	double produto = 0;
 	for (unsigned int i = 1; i < u->size() - 1; i++)
 	{
